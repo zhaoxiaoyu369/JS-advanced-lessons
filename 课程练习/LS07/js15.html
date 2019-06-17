@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //通过方法定义属性(哪个上面的属性，属性名字，属性相关配置项)
+        var obj = {x:5};
+        Object.defineProperty(obj,"y",{
+            writable:false,//可写性
+            enumerable:true,//可枚举性
+            configurable:false,//可配置性
+            value:6//属性值
+        });
+        Object.getOwnPropertyDescriptor(obj,"x");
+
+
+        var obj1={_z:1};
+        Object.defineProperties(obj1,{
+            x:{value:2,enumerable:true,configurable:true,writable:true},
+            y:{},
+            z:{
+                get(){
+                    return this._z;
+                },
+                set(val){
+                    this._z=val;
+                }
+            }
+        })
+    </script>
+
+    <script>
+        var o1 = {x:1};
+        var o2 = Object.create(o1);
+        console.log(o2.__proto__ == o1);
+        o2.x=2;//向o2自身添加属性值
+        //delete o2.x;delete只能删除自身所具有的属性，删除之后 o2.x =1;
+        console.log(o2.x);//2  
+        console.log(o1.x);//1
+        o2.__proto__.x=3;
+        console.log(o1.x);//3
+        console.log(o2.x);//3
+       
+    </script>
+
+    <script>
+    var obj = {x:1};
+    console.log(obj.__proto__ == Object.prototype);//true
+    console.log(obj.__proto__);//Object
+    console.log(obj.__proto__.__proto__);//null
+    </script>
+
+    <script>
+        var proObj={
+            z:3
+        };
+        var obj = Object.create(proObj);
+        obj.x = 1;
+        obj.y = 2;
+        console.log(obj.x);//1
+        console.log(obj.y);//2
+        console.log(obj.z);//3
+        "z" in obj;
+        // obj.hasOwnProperty("z");
+        
+    </script>
+
+</body>
+</html>

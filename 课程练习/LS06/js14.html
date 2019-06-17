@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            num:10,
+            str:"hello",
+            show:function(){
+                console.log(this.str);
+            }
+        }
+        //Object.create(obj);
+        //创建一个新对象，并且将obj对象作为新对象的__proto__
+        var subObject = Object.create(obj);
+        console.log(subObject);
+        console.log(subObject.__proto__==obj);
+        console.log(subObject.num);
+    </script>
+    <script>
+    function Person(username,age){
+        this.username = username;
+        this.age=age;
+        this.sayHi=function(){
+            console.log(this.username);
+        }
+    }
+    var Person1 = new Person("zhangsan",20);
+    var Person2 = new Person("lisi",21);
+    
+    
+    </script>
+</body>
+</html>

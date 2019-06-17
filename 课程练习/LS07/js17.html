@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            字符集合
+                [abcdef] 从中括号集合中任取一个字符
+                [^abcdef] 排除中括号内的字符的任意一个字符
+            字符边界
+                ^a 表示以特定的字符开头
+                b$ 表示以特定字符结束
+            数量词
+                a* 表示匹配前面的字符 0次或者多次
+                a+ 表示匹配前面的字符 1次或者多次
+                a? 表示匹配前面的字符 0次或者1次
+                a{n} 表示匹配前面的字符n次
+                a{m,n} 表示至少匹配m次，至多匹配n次
+                a{m, } 表示至少匹配m次
+
+        */
+       var newsList=[
+           {"title":"勇士4:2火箭"},
+           {"title":"勇士4:2火箭"},
+       ]
+       var ulNode= document.getElementById('newslist');
+       for(var i=0;i<newsList.length;i++){
+           var liNode=document.createElement('li');
+           liNode.innerHTML=newsList[i]['title'];
+           ulNode.appendChild(liNode);
+       }
+       var jsonStr = JSON.stringify(newsList);
+       console.log(jsonStr);
+       console.log(typeof jsonStr);
+       var jsObject = JSON.parse(jsonStr);
+       console.log(jsObject);
+       console.log(typeof jsObject);
+
+       var jsObject = {
+           "username":"zhangsan",
+           "age":20,
+           "address":{
+               "addName":"shijiazhuang",
+               "addCode":"111222"
+           }
+       };
+       var jsonStr=JSON.stringify(jsObject,function(k,v){
+           if(typeof v=="number"){
+               return v*2;
+           }
+           return v;
+       })
+       console.log(jsonStr);
+
+    </script>
+</body>
+</html>
